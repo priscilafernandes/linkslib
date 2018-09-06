@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-const links = require('./index');
+const links = require('../index');
 
 /* TESTES:
 - Quando nao houver parametro deve lançar um erro.
@@ -23,7 +23,7 @@ describe('links', () => {
 				var badFn = () => { links.getLinksFromMd() };
         expect(badFn).to.throw('O parâmetro não pode estar vazio');
         expect(badFn).to.equal(false);
-			})
+			});
 		});
 
 		describe('Quando o for um número', () => {
@@ -31,13 +31,13 @@ describe('links', () => {
 				var badFn = () => { links.getLinksFromMd('123') };
 				expect(badFn).to.throw('Não pode conter números');
 				expect(badFn).to.equal(false);
-			})
+			});
 		});
 
 		describe('Quando não houver URL', () => {
       it('Deve retornar um array vazio', () => {
         expect(links.getLinksFromMd('Oi, você quer entrar no site...')).to.be.empty; // to.not.be.empty
-      })
+      });
     });
 
     describe('Quando houver URL', () => {
@@ -45,7 +45,7 @@ describe('links', () => {
         expect(links.getLinksFromMd('Oi, você quer entrar no site [google](www.google.com)?')).to.deep.equal([
           { href: 'www.google.com', text: 'google'} 
         ]);
-      })
+      });
     });
 
     describe('Quando houver mais de uma URL', () => {
@@ -62,9 +62,9 @@ describe('links', () => {
           { href: 'https://en.wiktionary.org/wiki/dolore', text: 'dolore' },
           { href: 'http://foo.com', text: 'foo' }
         ]);
-      })
+      });
     });
 
 	});
 
-})
+});
